@@ -1,5 +1,5 @@
-import ClerkProtectedRoute from '@/components/shared/ClerkProtectedRoute'
-import ModalProvider from '@/components/shared/ModalProvider'
+import ClerkProtectedRoute from '@/providers/ClerkProtectedRoute'
+import ModalProvider from '@/providers/ModalProvider'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Outlet } from 'react-router-dom'
 
