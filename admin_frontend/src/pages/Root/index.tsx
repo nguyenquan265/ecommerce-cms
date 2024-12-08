@@ -1,4 +1,5 @@
 import ClerkProtectedRoute from '@/components/shared/ClerkProtectedRoute'
+import ModalProvider from '@/components/shared/ModalProvider'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Outlet } from 'react-router-dom'
 
@@ -17,6 +18,7 @@ const RootLayout = () => {
       signUpUrl='/sign-up'
     >
       <ClerkProtectedRoute>
+        <ModalProvider />
         <Outlet />
       </ClerkProtectedRoute>
     </ClerkProvider>
