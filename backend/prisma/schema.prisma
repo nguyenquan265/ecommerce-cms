@@ -1,5 +1,6 @@
 // npx prisma db push => to apply the changes to the database
 // npx prisma studio => to open the prisma studio
+// npx prisma migrate reset => to reset the migrations
 
 generator client {
   provider = "prisma-client-js"

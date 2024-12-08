@@ -1,4 +1,4 @@
-import { ClerkProvider } from '@clerk/clerk-react'
+// import { ClerkProvider } from '@clerk/clerk-react'
 import { Outlet } from 'react-router-dom'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -9,14 +9,14 @@ if (!PUBLISHABLE_KEY) {
 
 const AuthLayout = () => {
   return (
-    <ClerkProvider
-      publishableKey={PUBLISHABLE_KEY}
-      afterSignOutUrl='/sign-in'
-      signInUrl='/sign-in'
-      signUpUrl='/sign-up'
-    >
-      <Outlet />
-    </ClerkProvider>
+    // <ClerkProvider
+    //   publishableKey={PUBLISHABLE_KEY}
+    //   afterSignOutUrl='/sign-in'
+    //   signInUrl='/sign-in'
+    //   signUpUrl='/sign-up'
+    // >
+    <Outlet />
+    // </ClerkProvider>
   )
 }
 

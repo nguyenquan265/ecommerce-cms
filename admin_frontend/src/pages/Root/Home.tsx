@@ -1,16 +1,31 @@
+import { useGetUserStore } from '@/apis/store-api'
 import { useStoreModal } from '@/hooks/use-store-modal'
 import { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 
 const HomePage = () => {
-  const { isOpen, onOpen } = useStoreModal()
+  const { store, isLoading } = useGetUserStore()
+  const { onClose, onOpen } = useStoreModal()
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!store && !isLoading) {
       onOpen()
     }
-  }, [isOpen, onOpen])
 
-  return <div className='p-4'>HomePage</div>
+    if (store) {
+      onClose()
+    }
+  }, [store, isLoading])
+
+  if (isLoading) {
+    return null
+  }
+
+  if (store) {
+    return <Navigate to={`/${store.id}`} />
+  }
+
+  return null
 }
 
 export default HomePage

@@ -6,25 +6,34 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
+import { useCreateStore } from '@/apis/store-api'
+import { useNavigate } from 'react-router-dom'
 
 const formSchema = z.object({
   name: z.string().min(1)
 })
 
-type FormValues = z.infer<typeof formSchema>
+export type CreateStoreFormValues = z.infer<typeof formSchema>
 
 const StoreModal = () => {
   const { isOpen, onClose } = useStoreModal()
+  const { createStore, isPending } = useCreateStore()
+  const navigate = useNavigate()
 
-  const form = useForm<FormValues>({
+  const form = useForm<CreateStoreFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: ''
     }
   })
 
-  const onSubmit = async (values: FormValues) => {
-    console.log(values)
+  const onSubmit = async (values: CreateStoreFormValues) => {
+    const store = await createStore(values)
+    onClose()
+
+    if (store) {
+      navigate(`/${store.id}`)
+    }
   }
 
   return (
@@ -45,7 +54,7 @@ const StoreModal = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder='E-commerce' {...field} />
+                      <Input disabled={isPending} placeholder='E-commerce' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -53,10 +62,12 @@ const StoreModal = () => {
               />
 
               <div className='mt-6 space-x-2 flex items-center justify-end w-full'>
-                <Button variant='outline' onClick={onClose}>
+                <Button disabled={isPending} variant='outline' onClick={onClose}>
                   Cancel
                 </Button>
-                <Button type='submit'>Continue</Button>
+                <Button disabled={isPending} type='submit'>
+                  Continue
+                </Button>
               </div>
             </form>
           </Form>
