@@ -17,7 +17,7 @@ router
   .post(clerkMiddleware(), authenticate, createStore)
 router
   .route('/:storeId')
-  .get(clerkMiddleware(), authenticate, getUserStore)
+  .get(getUserStore)
   .patch(clerkMiddleware(), authenticate, updateUserStore)
   .delete(clerkMiddleware(), authenticate, deleteUserStore)
 

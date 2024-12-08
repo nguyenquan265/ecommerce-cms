@@ -39,28 +39,13 @@ export const createStore = asyncHandler(async (req: CreateStoreRequest, res: Res
 })
 
 export const getUserStore = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-  const userId = req.auth?.userId as string
   const { storeId } = req.params
 
-  const query: {
+  const store = await prisma.store.findFirst({
     where: {
-      userId: string
-      id?: string
-    }
-  } = {
-    where: {
-      userId
-    }
-  }
-
-  if (storeId && storeId !== 'undefined') {
-    query.where = {
-      ...query.where,
       id: storeId
     }
-  }
-
-  const store = await prisma.store.findFirst(query)
+  })
 
   if (!store) {
     throw new ApiError(404, 'Store not found')
