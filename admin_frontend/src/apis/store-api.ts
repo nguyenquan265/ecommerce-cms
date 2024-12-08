@@ -33,7 +33,7 @@ export const useGetAllUserStores = () => {
   return { stores, isLoading }
 }
 
-export const useGetUserStore = (storeId?: string) => {
+export const useGetUserStore = (storeId: string) => {
   const { getToken } = useAuth()
 
   const getUserStoreRequest = async (): Promise<Store> => {
@@ -93,4 +93,70 @@ export const useCreateStore = () => {
   })
 
   return { createStore, isPending }
+}
+
+export const useUpdateStore = (storeId: string) => {
+  const { getToken } = useAuth()
+  const queryClient = useQueryClient()
+
+  const updateStoreRequest = async ({ name }: { name: string }): Promise<Store> => {
+    const token = await getToken()
+
+    const res = await fetch(`${SERVER_URL}/api/v1/stores/${storeId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      credentials: 'include',
+      body: JSON.stringify({ name })
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to update store')
+    }
+
+    return res.json()
+  }
+
+  const { mutateAsync: updateStore, isPending } = useMutation({
+    mutationFn: updateStoreRequest,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['stores'] })
+      queryClient.setQueryData(['store', { storeId: data.id }], data)
+    }
+  })
+
+  return { updateStore, isPending }
+}
+
+export const useDeleteStore = (storeId: string) => {
+  const { getToken } = useAuth()
+  const queryClient = useQueryClient()
+
+  const deleteStoreRequest = async () => {
+    const token = await getToken()
+
+    const res = await fetch(`${SERVER_URL}/api/v1/stores/${storeId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      credentials: 'include'
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to delete store')
+    }
+  }
+
+  const { mutateAsync: deleteStore, isPending } = useMutation({
+    mutationFn: deleteStoreRequest,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['stores'] })
+      queryClient.removeQueries({ queryKey: ['store', { storeId }] })
+    }
+  })
+
+  return { deleteStore, isPending }
 }

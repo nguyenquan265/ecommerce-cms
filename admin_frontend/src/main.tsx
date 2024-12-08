@@ -2,7 +2,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { Toaster } from '@/components/ui/sonner'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +31,8 @@ createRoot(document.getElementById('root')!).render(
       signUpUrl='/sign-up'
     >
       <App />
+      <Toaster />
     </ClerkProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
 )

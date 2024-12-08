@@ -1,28 +1,28 @@
-import { useGetUserStore } from '@/apis/store-api'
+import { useGetAllUserStores } from '@/apis/store-api'
 import { useStoreModal } from '@/hooks/use-store-modal'
 import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 
 const HomePage = () => {
-  const { store, isLoading } = useGetUserStore()
+  const { stores, isLoading } = useGetAllUserStores()
   const { onClose, onOpen } = useStoreModal()
 
   useEffect(() => {
-    if (!store && !isLoading) {
+    if ((!stores || stores.length === 0) && !isLoading) {
       onOpen()
     }
 
-    if (store) {
+    if (stores && stores?.length > 0) {
       onClose()
     }
-  }, [store, isLoading])
+  }, [stores, isLoading])
 
   if (isLoading) {
     return null
   }
 
-  if (store) {
-    return <Navigate to={`/${store.id}`} />
+  if (stores && stores.length > 0) {
+    return <Navigate to={`/${stores[0].id}`} />
   }
 
   return null

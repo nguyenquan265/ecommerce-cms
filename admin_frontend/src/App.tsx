@@ -4,8 +4,9 @@ import AuthLayout from './pages/Auth'
 import HomePage from './pages/Root/Home'
 import SignInPage from './pages/Auth/SignIn'
 import SignUpPage from './pages/Auth/SignUp'
-import Dashboard from './pages/Root/Dashboard'
+import DashboardPage from './pages/Root/Dashboard'
 import Error from './components/shared/Error'
+import SettingsPage from './pages/Root/Settings'
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: ':storeId',
-        element: <Dashboard />
+        element: <DashboardPage />
+      },
+      {
+        path: ':storeId/settings',
+        element: <SettingsPage />
       }
     ]
   },
