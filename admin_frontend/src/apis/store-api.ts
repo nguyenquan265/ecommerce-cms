@@ -33,7 +33,7 @@ export const useGetAllUserStores = () => {
   return { stores, isLoading }
 }
 
-export const useGetUserStore = (storeId: string) => {
+export const useGetUserStore = (storeId: string = '') => {
   const { getToken } = useAuth()
 
   const getUserStoreRequest = async (): Promise<Store> => {
@@ -55,7 +55,8 @@ export const useGetUserStore = (storeId: string) => {
 
   const { data: store, isLoading } = useQuery({
     queryKey: ['store', { storeId }],
-    queryFn: getUserStoreRequest
+    queryFn: getUserStoreRequest,
+    enabled: !!storeId
   })
 
   return { store, isLoading }

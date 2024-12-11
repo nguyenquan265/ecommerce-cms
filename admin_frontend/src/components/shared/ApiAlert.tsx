@@ -24,7 +24,7 @@ const ApiAlert: React.FC<ApiAlertProps> = ({ title, description, variant }) => {
   const onCopy = () => {
     navigator.clipboard.writeText(description)
 
-    toast.success('Copied to clipboard')
+    toast.success('API copied to clipboard')
   }
 
   return (

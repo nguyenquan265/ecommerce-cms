@@ -6,7 +6,7 @@ const DashboardPage = () => {
   const { store, isLoading } = useGetUserStore(storeId)
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return null
   }
 
   if (!store) {

@@ -7,6 +7,8 @@ import SignUpPage from './pages/Auth/SignUp'
 import DashboardPage from './pages/Root/Dashboard'
 import Error from './components/shared/Error'
 import SettingsPage from './pages/Root/Settings'
+import BillboardsPage from './pages/Root/Billboards'
+import SingleBillboard from './pages/Root/SingleBillboard'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: ':storeId/settings',
         element: <SettingsPage />
+      },
+      {
+        path: ':storeId/billboards',
+        element: <BillboardsPage />
+      },
+      {
+        path: ':storeId/billboards/:billboardId',
+        element: <SingleBillboard />
       }
     ]
   },

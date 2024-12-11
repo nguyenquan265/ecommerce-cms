@@ -1,3 +1,5 @@
+// Custom modal component
+
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './dialog'
 
 interface ModalProps {

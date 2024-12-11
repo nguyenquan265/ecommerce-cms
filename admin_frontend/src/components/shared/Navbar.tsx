@@ -2,12 +2,13 @@ import { UserButton } from '@clerk/clerk-react'
 import MainNav from './MainNav'
 import StoreSwitcher from './StoreSwitcher'
 import { useGetAllUserStores } from '@/apis/store-api'
+import NavbarSkeleton from './NavbarSkeleton'
 
 const Navbar = () => {
   const { stores, isLoading } = useGetAllUserStores()
 
   if (isLoading) {
-    return null
+    return <NavbarSkeleton />
   }
 
   if (!stores) {
