@@ -36,3 +36,13 @@ export type Size = {
   createdAt: string
   updatedAt: string
 }
+
+export type Color = {
+  id: string
+  storeId: string
+  store: Store
+  name: string
+  value: string
+  createdAt: string
+  updatedAt: string
+}
