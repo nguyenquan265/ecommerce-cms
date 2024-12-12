@@ -44,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: ':storeId/categories/:categoryId',
         element: <SingleCategoryPage />
+      },
+      {
+        path: ':storeId/sizes'
+        // element: <CategoriesPage />
+      },
+      {
+        path: ':storeId/sizes/:sizeId'
+        // element: <SingleCategoryPage />
       }
     ]
   },
