@@ -2,7 +2,7 @@ import { Router } from 'express'
 import storeRouter from './store.routes'
 import billboardRouter from './billboard.routes'
 import categoryRouter from './category.routes'
-import sizeRouter from './category.routes'
+import sizeRouter from './size.routes'
 
 const router = Router()
 

@@ -7,17 +7,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
-import { BillboardColumn, CategoryColumn } from './Columns'
+import { BillboardColumn, CategoryColumn, SizeColumn } from './Columns'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBillboard } from '@/apis/billboard-api'
 import { useState } from 'react'
 import AlertModal from '../modals/AlertModal'
 import { useDeleteCategory } from '@/apis/category-api'
+import { useDeleteSize } from '@/apis/size-api'
 
 interface CellActionProps {
-  data: BillboardColumn | CategoryColumn
-  type: 'billboards' | 'categories'
+  data: BillboardColumn | CategoryColumn | SizeColumn
+  type: 'billboards' | 'categories' | 'sizes'
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
@@ -25,12 +26,13 @@ const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
   const [open, setOpen] = useState(false)
   const { deleteBillboard, isPending: isBillboardDeleting } = useDeleteBillboard(storeId, data?.id)
   const { deleteCategory, isPending: isCategoryDeleting } = useDeleteCategory(storeId, data?.id)
+  const { deleteSize, isPending: isSizedeleting } = useDeleteSize(storeId, data?.id)
   const navigate = useNavigate()
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id)
 
-    toast.success('Billboard ID copied to clipboard')
+    toast.success('ID copied to clipboard')
   }
 
   const onDelete = async () => {
@@ -42,6 +44,10 @@ const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
       await deleteCategory()
     }
 
+    if (type === 'sizes') {
+      await deleteSize()
+    }
+
     setOpen(false)
   }
 
@@ -51,7 +57,7 @@ const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
-        loading={isBillboardDeleting || isCategoryDeleting}
+        loading={isBillboardDeleting || isCategoryDeleting || isSizedeleting}
       />
 
       <DropdownMenu>

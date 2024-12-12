@@ -11,6 +11,8 @@ import BillboardsPage from './pages/Root/Billboards'
 import SingleBillboard from './pages/Root/SingleBillboard'
 import CategoriesPage from './pages/Root/Categories'
 import SingleCategoryPage from './pages/Root/SingleCategory'
+import SizesPage from './pages/Root/Sizes'
+import SingleSizePage from './pages/Root/SingleSize'
 
 const router = createBrowserRouter([
   {
@@ -46,12 +48,12 @@ const router = createBrowserRouter([
         element: <SingleCategoryPage />
       },
       {
-        path: ':storeId/sizes'
-        // element: <CategoriesPage />
+        path: ':storeId/sizes',
+        element: <SizesPage />
       },
       {
-        path: ':storeId/sizes/:sizeId'
-        // element: <SingleCategoryPage />
+        path: ':storeId/sizes/:sizeId',
+        element: <SingleSizePage />
       }
     ]
   },

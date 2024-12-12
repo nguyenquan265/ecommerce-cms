@@ -48,3 +48,29 @@ export const categoriesColumns: ColumnDef<CategoryColumn>[] = [
     cell: ({ row }) => <CellAction data={row.original} type='categories' />
   }
 ]
+
+export type SizeColumn = {
+  id: string
+  name: string
+  value: string
+  createdAt: string
+}
+
+export const sizesColumns: ColumnDef<SizeColumn>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name'
+  },
+  {
+    accessorKey: 'value',
+    header: 'Value'
+  },
+  {
+    accessorKey: 'createdAt',
+    header: 'Date'
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => <CellAction data={row.original} type='sizes' />
+  }
+]

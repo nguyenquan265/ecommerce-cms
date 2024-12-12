@@ -26,3 +26,13 @@ export type Category = {
   createdAt: string
   updatedAt: string
 }
+
+export type Size = {
+  id: string
+  storeId: string
+  store: Store
+  name: string
+  value: string
+  createdAt: string
+  updatedAt: string
+}
