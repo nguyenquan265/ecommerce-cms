@@ -7,21 +7,24 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
-import { BillboardColumn } from './Columns'
+import { BillboardColumn, CategoryColumn } from './Columns'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBillboard } from '@/apis/billboard-api'
 import { useState } from 'react'
 import AlertModal from '../modals/AlertModal'
+import { useDeleteCategory } from '@/apis/category-api'
 
 interface CellActionProps {
-  data: BillboardColumn
+  data: BillboardColumn | CategoryColumn
+  type: 'billboards' | 'categories'
 }
 
-const CellAction: React.FC<CellActionProps> = ({ data }) => {
+const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
   const { storeId } = useParams()
   const [open, setOpen] = useState(false)
-  const { deleteBillboard, isPending } = useDeleteBillboard(storeId, data?.id)
+  const { deleteBillboard, isPending: isBillboardDeleting } = useDeleteBillboard(storeId, data?.id)
+  const { deleteCategory, isPending: isCategoryDeleting } = useDeleteCategory(storeId, data?.id)
   const navigate = useNavigate()
 
   const onCopy = (id: string) => {
@@ -31,14 +34,25 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
   }
 
   const onDelete = async () => {
-    await deleteBillboard()
+    if (type === 'billboards') {
+      await deleteBillboard()
+    }
+
+    if (type === 'categories') {
+      await deleteCategory()
+    }
 
     setOpen(false)
   }
 
   return (
     <>
-      <AlertModal isOpen={open} onClose={() => setOpen(false)} onConfirm={onDelete} loading={isPending} />
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={isBillboardDeleting || isCategoryDeleting}
+      />
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -56,7 +70,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
             Copy Id
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={() => navigate(`/${storeId}/billboards/${data.id}`)}>
+          <DropdownMenuItem onClick={() => navigate(`/${storeId}/${type}/${data.id}`)}>
             <Edit className='mr-2 h-4 w-4' />
             Update
           </DropdownMenuItem>

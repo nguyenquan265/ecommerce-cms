@@ -9,6 +9,8 @@ import Error from './components/shared/Error'
 import SettingsPage from './pages/Root/Settings'
 import BillboardsPage from './pages/Root/Billboards'
 import SingleBillboard from './pages/Root/SingleBillboard'
+import CategoriesPage from './pages/Root/Categories'
+import SingleCategoryPage from './pages/Root/SingleCategory'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: ':storeId/billboards/:billboardId',
         element: <SingleBillboard />
+      },
+      {
+        path: ':storeId/categories',
+        element: <CategoriesPage />
+      },
+      {
+        path: ':storeId/categories/:categoryId',
+        element: <SingleCategoryPage />
       }
     ]
   },

@@ -4,7 +4,7 @@ import Heading from './Heading'
 import { Separator } from '../ui/separator'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useGetUserStore } from '@/apis/store-api'
-import { BillboardColumn, columns } from './Columns'
+import { BillboardColumn, billboardsColumns } from './Columns'
 import { DataTable } from '../ui/data-table'
 import ApiAlert from './ApiAlert'
 
@@ -39,7 +39,7 @@ const BillboardClient: React.FC<BillboardClientProps> = ({ billboards }) => {
 
       <Separator />
 
-      <DataTable columns={columns} data={billboards} searchKey='label' />
+      <DataTable columns={billboardsColumns} data={billboards} searchKey='label' />
 
       <Heading title='API' description='API calls for billboards' />
 

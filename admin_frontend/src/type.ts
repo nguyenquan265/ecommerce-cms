@@ -15,3 +15,14 @@ export type Billboard = {
   createdAt: string
   updatedAt: string
 }
+
+export type Category = {
+  id: string
+  storeId: string
+  store: Store
+  billboardId: string
+  billboard: Billboard
+  name: string
+  createdAt: string
+  updatedAt: string
+}

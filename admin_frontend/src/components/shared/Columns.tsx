@@ -7,7 +7,7 @@ export type BillboardColumn = {
   createdAt: string
 }
 
-export const columns: ColumnDef<BillboardColumn>[] = [
+export const billboardsColumns: ColumnDef<BillboardColumn>[] = [
   {
     accessorKey: 'label',
     header: 'Label'
@@ -18,6 +18,33 @@ export const columns: ColumnDef<BillboardColumn>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => <CellAction data={row.original} />
+    cell: ({ row }) => <CellAction data={row.original} type='billboards' />
+  }
+]
+
+export type CategoryColumn = {
+  id: string
+  name: string
+  billboardLabel: string
+  createdAt: string
+}
+
+export const categoriesColumns: ColumnDef<CategoryColumn>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name'
+  },
+  {
+    accessorKey: 'billboard',
+    header: 'Billboard',
+    cell: ({ row }) => row.original.billboardLabel
+  },
+  {
+    accessorKey: 'createdAt',
+    header: 'Date'
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => <CellAction data={row.original} type='categories' />
   }
 ]
