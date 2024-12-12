@@ -17,7 +17,8 @@ model Store {
   name       String
   userId     String
   billboards Billboard[]
-  Categories Category[]
+  categories Category[]
+  size       Size[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
@@ -26,7 +27,7 @@ model Billboard {
   id         String     @id @default(cuid())
   storeId    String
   store      Store      @relation(fields: [storeId], references: [id])
-  Categories Category[]
+  categories Category[]
   label      String
   imageUrl   String
   createdAt  DateTime   @default(now())
@@ -47,4 +48,16 @@ model Category {
 
   @@index([storeId], name: "storeIdForCategory")
   @@index([billboardId], name: "billboardIdForCategory")
+}
+
+model Size {
+  id        String   @id @default(cuid())
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id])
+  name      String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId], name: "storeIdForSize")
 }
