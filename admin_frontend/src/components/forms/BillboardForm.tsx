@@ -100,19 +100,21 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name='label'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Label</FormLabel>
-                <FormControl>
-                  <Input disabled={isCreating || isUpdating || isDeleting} placeholder='Billboard label' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className='grid grid-cols-3 gap-8'>
+            <FormField
+              control={form.control}
+              name='label'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Label</FormLabel>
+                  <FormControl>
+                    <Input disabled={isCreating || isUpdating || isDeleting} placeholder='Billboard label' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <Button type='submit' disabled={isCreating || isUpdating || isDeleting} className='ml-auto'>
             {initialData ? 'Save changes' : 'Create'}

@@ -23,8 +23,12 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
         uploadPreset: 'ecommerce-cms'
       },
       function (error: any, result: any) {
-        if (result.event === 'success') {
-          onChange(result.info.secure_url)
+        if (result.event === 'queues-end') {
+          const urlList = result.info.files.map((file: any) => file.uploadInfo.secure_url)
+
+          urlList.forEach((url: string) => {
+            onChange(url)
+          })
         }
 
         if (error) {

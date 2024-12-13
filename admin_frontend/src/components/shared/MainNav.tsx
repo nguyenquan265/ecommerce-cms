@@ -32,6 +32,11 @@ const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => 
       active: location.pathname === `/${storeId}/colors`
     },
     {
+      href: `/${storeId}/products`,
+      label: 'Products',
+      active: location.pathname === `/${storeId}/products`
+    },
+    {
       href: `/${storeId}/settings`,
       label: 'Settings',
       active: location.pathname === `/${storeId}/settings`
