@@ -8,7 +8,7 @@ import DashboardPage from './pages/Root/Dashboard'
 import Error from './components/shared/Error'
 import SettingsPage from './pages/Root/Settings'
 import BillboardsPage from './pages/Root/Billboards'
-import SingleBillboard from './pages/Root/SingleBillboard'
+import SingleBillboardPage from './pages/Root/SingleBillboard'
 import CategoriesPage from './pages/Root/Categories'
 import SingleCategoryPage from './pages/Root/SingleCategory'
 import SizesPage from './pages/Root/Sizes'
@@ -17,6 +17,7 @@ import ColorsPage from './pages/Root/Colors'
 import SingleColorPage from './pages/Root/SingleColor'
 import ProductsPage from './pages/Root/Products'
 import SingleProductPage from './pages/Root/SingleProduct'
+import OrderPage from './pages/Root/Order'
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':storeId/billboards/:billboardId',
-        element: <SingleBillboard />
+        element: <SingleBillboardPage />
       },
       {
         path: ':storeId/categories',
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: ':storeId/products/:productId',
         element: <SingleProductPage />
+      },
+      {
+        path: ':storeId/orders',
+        element: <OrderPage />
       }
     ]
   },

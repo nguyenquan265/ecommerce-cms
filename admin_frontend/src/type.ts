@@ -7,6 +7,7 @@ export type Store = {
   sizes: Size[]
   colors: Color[]
   products: Product[]
+  orders: Order[]
   createdAt: string
   updatedAt: string
 }
@@ -60,8 +61,6 @@ export type Product = {
   id: string
   storeId: string
   store: Store
-  billboardId: string
-  billboard: Billboard
   categoryId: string
   category: Category
   name: string
@@ -73,6 +72,7 @@ export type Product = {
   corlorId: string
   color: Color
   images: Image[]
+  orderItems: OrderItem[]
   createdAt: string
   updatedAt: string
 }
@@ -82,6 +82,28 @@ export type Image = {
   productId: string
   product: Product
   url: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type Order = {
+  id: string
+  storeId: string
+  store: Store
+  orderItems: OrderItem[]
+  isPaid: boolean
+  phone: string
+  address: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type OrderItem = {
+  id: string
+  orderId: string
+  order: Order
+  productId: string
+  product: Product
   createdAt: string
   updatedAt: string
 }
