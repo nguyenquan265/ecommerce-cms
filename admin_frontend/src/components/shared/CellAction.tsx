@@ -15,10 +15,11 @@ import { useState } from 'react'
 import AlertModal from '../modals/AlertModal'
 import { useDeleteCategory } from '@/apis/category-api'
 import { useDeleteSize } from '@/apis/size-api'
+import { useDeleteColor } from '@/apis/color-api'
 
 interface CellActionProps {
   data: BillboardColumn | CategoryColumn | SizeColumn
-  type: 'billboards' | 'categories' | 'sizes'
+  type: 'billboards' | 'categories' | 'sizes' | 'colors'
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
@@ -27,6 +28,7 @@ const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
   const { deleteBillboard, isPending: isBillboardDeleting } = useDeleteBillboard(storeId, data?.id)
   const { deleteCategory, isPending: isCategoryDeleting } = useDeleteCategory(storeId, data?.id)
   const { deleteSize, isPending: isSizedeleting } = useDeleteSize(storeId, data?.id)
+  const { deleteColor, isPending: isColorDeleting } = useDeleteColor(storeId, data?.id)
   const navigate = useNavigate()
 
   const onCopy = (id: string) => {
@@ -48,6 +50,10 @@ const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
       await deleteSize()
     }
 
+    if (type === 'colors') {
+      await deleteColor()
+    }
+
     setOpen(false)
   }
 
@@ -57,7 +63,7 @@ const CellAction: React.FC<CellActionProps> = ({ data, type }) => {
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
-        loading={isBillboardDeleting || isCategoryDeleting || isSizedeleting}
+        loading={isBillboardDeleting || isCategoryDeleting || isSizedeleting || isColorDeleting}
       />
 
       <DropdownMenu>

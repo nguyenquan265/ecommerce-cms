@@ -13,6 +13,8 @@ import CategoriesPage from './pages/Root/Categories'
 import SingleCategoryPage from './pages/Root/SingleCategory'
 import SizesPage from './pages/Root/Sizes'
 import SingleSizePage from './pages/Root/SingleSize'
+import ColorsPage from './pages/Root/Colors'
+import SingleColorPage from './pages/Root/SingleColor'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: ':storeId/sizes/:sizeId',
         element: <SingleSizePage />
+      },
+      {
+        path: ':storeId/colors',
+        element: <ColorsPage />
+      },
+      {
+        path: ':storeId/colors/:colorId',
+        element: <SingleColorPage />
       }
     ]
   },
