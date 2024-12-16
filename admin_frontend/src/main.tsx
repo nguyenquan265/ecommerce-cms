@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Toaster } from '@/components/ui/sonner'
+import { ThemeProvider } from './providers/ThemeProvider.tsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,8 +31,10 @@ createRoot(document.getElementById('root')!).render(
       signInUrl='/sign-in'
       signUpUrl='/sign-up'
     >
-      <App />
-      <Toaster />
+      <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+        <App />
+        <Toaster />
+      </ThemeProvider>
     </ClerkProvider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>

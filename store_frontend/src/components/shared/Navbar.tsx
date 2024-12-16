@@ -18,9 +18,9 @@ const Navbar = () => {
   return (
     <div className='borber-b'>
       <Container>
-        <div className='relative px-4  sm:px-6 lg:px-8 flex h-16 items-center'>
+        <div className='relative px-4 sm:px-6 lg:px-8 flex h-16 items-center'>
           <Link to='/' className='ml-4 flex lg:ml-0 gap-x-2'>
-            <p>Store</p>
+            <p className='text-xl font-bold'>STORE</p>
           </Link>
 
           <MainNav data={categories} />

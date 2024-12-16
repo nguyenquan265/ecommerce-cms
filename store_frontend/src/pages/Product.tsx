@@ -1,5 +1,6 @@
 import { useGetAllProductsFromStore, useGetSingleProduct } from '@/apis/product-api'
 import Container from '@/components/shared/Container'
+import Gallery from '@/components/shared/Gallery'
 import Info from '@/components/shared/Info'
 import NoResults from '@/components/shared/NoResults'
 import ProductList from '@/components/shared/ProductList'
@@ -25,7 +26,7 @@ const ProductPage = () => {
       <Container>
         <div className='px-4 py-10 sm:px-6 lg:px-8'>
           <div className='lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8'>
-            {/* <Gallery images={product.images} /> */}
+            <Gallery images={product.images} />
 
             <div className='px-4 mt-0 sm:mt-16 sm:px-0 lg:mt-0'>
               <Info data={product} />

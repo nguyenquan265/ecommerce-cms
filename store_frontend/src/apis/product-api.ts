@@ -29,7 +29,15 @@ export const useGetAllProductsFromStore = ({
   }
 
   const { data: products, isLoading } = useQuery({
-    queryKey: ['products'],
+    queryKey: [
+      'products',
+      {
+        categoryId,
+        colorId,
+        isFeatured,
+        sizeId
+      }
+    ],
     queryFn: getAllProductsRequest
   })
 

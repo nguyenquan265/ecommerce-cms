@@ -35,6 +35,9 @@ export const getSingleCategory = asyncHandler(async (req: Request, res: Response
   const category = await prisma.category.findUnique({
     where: {
       id: categoryId
+    },
+    include: {
+      billboard: true
     }
   })
 

@@ -3,6 +3,7 @@ import MainNav from './MainNav'
 import StoreSwitcher from './StoreSwitcher'
 import { useGetAllUserStores } from '@/apis/store-api'
 import NavbarSkeleton from './NavbarSkeleton'
+import { ModeToggle } from './ModeToggle'
 
 const Navbar = () => {
   const { stores, isLoading } = useGetAllUserStores()
@@ -23,6 +24,7 @@ const Navbar = () => {
         <MainNav className='mx-6' />
 
         <div className='ml-auto flex items-center space-x-4'>
+          <ModeToggle />
           <UserButton />
         </div>
       </div>

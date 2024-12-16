@@ -1,3 +1,4 @@
+import PreviewModal from '@/components/modals/PreviewModal'
 import Footer from '@/components/shared/Footer'
 import Navbar from '@/components/shared/Navbar'
 import { Outlet } from 'react-router-dom'
@@ -7,6 +8,7 @@ const RootLayout = () => {
     <>
       <Navbar />
 
+      <PreviewModal />
       <Outlet />
 
       <Footer />
