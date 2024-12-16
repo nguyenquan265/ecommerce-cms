@@ -3,13 +3,12 @@ import { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import Currency from './Currentcy'
 import Button from './Button'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { useCreateOrder } from '@/apis/order-api'
 
 const Summary = () => {
   const [searchParams] = useSearchParams()
   const { createOrder, isPending } = useCreateOrder()
-  const navigate = useNavigate()
   const items = useCart((state) => state.items)
   const removeAll = useCart((state) => state.removeAll)
   const totalPrice = items.reduce((total, item) => total + Number(item.price), 0)
@@ -30,7 +29,7 @@ const Summary = () => {
 
     const url = await createOrder(productIds)
 
-    navigate(url)
+    window.location.href = url
   }
 
   return (
