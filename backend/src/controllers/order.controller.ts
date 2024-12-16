@@ -92,8 +92,8 @@ export const createOrder = asyncHandler(async (req: CreateOrderRequest, res: Res
     phone_number_collection: {
       enabled: true
     },
-    success_url: `${process.env.CLIENT_URL}/cart?success=1`,
-    cancel_url: `${process.env.CLIENT_URL}/cart?canceled=1`,
+    success_url: `${process.env.CLIENT_URL2}/cart?success=1`,
+    cancel_url: `${process.env.CLIENT_URL2}/cart?canceled=1`,
     metadata: {
       orderId: order.id
     }
