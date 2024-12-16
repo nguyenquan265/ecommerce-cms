@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Link, useLocation, useParams } from 'react-router-dom'
 
-const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+const MainNav = ({ className }: React.HTMLAttributes<HTMLElement>) => {
   const { storeId } = useParams()
   const location = useLocation()
 
